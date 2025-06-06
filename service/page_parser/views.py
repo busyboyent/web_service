@@ -42,12 +42,12 @@ class ParsedPageViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset()
 
         if order:
-            if order.lstrip('-') not in ['h1', 'h2', 'h3']:
+            if order not in ['h1', 'h2', 'h3', '-h1', '-h2', '-h3']:
                 return Response(
                     {'error': 'Invalid order parameter. Use h1, h2, h3 with optional - prefix'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-            queryset = queryset.order_by(order)
+            queryset = queryset.order_by(order).reverse()
         else:
             queryset = queryset.order_by('-created_at')
 
