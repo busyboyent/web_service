@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'page_parser',  # Добавьте эту строку
+    'page_parser',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,6 @@ ROOT_URLCONF = 'service.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Указывает на папку templates/
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
