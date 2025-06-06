@@ -62,7 +62,12 @@ class ParsedPageViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        queryset = queryset.order_by(order if order else 'created_at').reverse()
+        # в задании требуется обратная сортировка относительно синтаксиса order_by
+        # полагаю, что не очень круто будет делать .reverse() для очень большой записи поэтому поправим название поля
+        if order:
+            order = order.lstrip('-') if order.startswith('-') else f'-{order}'
+
+        queryset = queryset.order_by(order if order else '-created_at')
         serializer = self.get_serializer(queryset, many=True)
 
         return Response(serializer.data)
