@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import URLValidator
 
+
 class ParsedPage(models.Model):
     url = models.TextField(validators=[URLValidator()])
     h1 = models.IntegerField(default=0)
